@@ -7,16 +7,12 @@ public class PlayerInput : MonoBehaviour
     public delegate void cliclAction();
     public static event cliclAction OnClick;
     public static event cliclAction OnClickUp;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+   
 
     // Update is called once per frame
-    void Update()
+    void Update( )
     {
-        if(Input.GetKey(KeyCode.Mouse0))
+        if (Input.GetKey(KeyCode.Mouse0))
         {
             if(OnClick != null)
             {
@@ -35,4 +31,10 @@ public class PlayerInput : MonoBehaviour
 
 
     }
+    //public Vector3 GetMousePosition()
+    //{
+
+    //    return Input.mousePosition;
+    //}
+   
 }

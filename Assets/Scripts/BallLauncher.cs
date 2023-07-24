@@ -1,22 +1,20 @@
+
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class BallLauncher : MonoBehaviour
 {
-    public Ball ball;
+    public List<Ball> BalList;
     public Transform firingPoint;
-    public float power;
-    // Start is called before the first frame update
-    void Start()
+    public static BallLauncher instance;
+    //private float power = 20;
+
+
+    private void Start()
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        instance = this;
     }
     private void OnEnable()
     {
@@ -31,26 +29,37 @@ public class BallLauncher : MonoBehaviour
 
     private void RotateTheBallLauncher()
     {
+
         Vector3 mousPosition = Input.mousePosition;
+
         mousPosition.z = Camera.main.transform.position.z;
        
         Vector3 InputMousePosition = Camera.main.ScreenToWorldPoint( mousPosition);
-        //Debug.Log(InputMousePosition);
         Vector3 direction = transform.position - InputMousePosition;
 
-        Debug.Log(direction);
+        //Debug.Log(direction);
 
         Quaternion rotation = Quaternion.LookRotation( Vector3.forward,direction);
-        //Debug.Log(rotation);
         transform.rotation = rotation;
         
-
-
     }
 
-    public void LaunchBalls()
+    public async void  LaunchBalls()
     {
-        Ball CreatedCannonball = Instantiate(ball, firingPoint.position, firingPoint.rotation);
-        CreatedCannonball.rb.velocity = firingPoint.transform.up * power;
+        for(int i = 0;i<BalList.Count;i++)
+        {
+            //BalList[i].transform.position = firingPoint.transform.position;
+            //BalList[i].rb.velocity = firingPoint.transform.up * power;
+            //BalList[i].transform.position = firingPoint.transform.position;
+            //BalList[i].rb.velocity = transform.up * power;
+            BalList[i].Shoot(firingPoint,transform.up);
+            await Task.Delay(200);
+        }
+
+        BalList.Clear();
+    }
+    public void StoreBall(Ball ball)
+    {
+        BalList.Add(ball);
     }
 }

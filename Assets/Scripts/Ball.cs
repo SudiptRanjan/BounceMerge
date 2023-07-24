@@ -4,20 +4,26 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
-   public Rigidbody rb;
-    // Start is called before the first frame update
+    private float power = 20;
+
+    public Rigidbody rb;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Shoot(Transform firePoint,Vector3 dir)
     {
-        
-    }
-    void shoot()
-    {
+        transform.position = firePoint.transform.position;
+        rb.velocity = dir * power;
+        rb.isKinematic = false;
         rb.useGravity = true;
+    }
+  
+    public void NoPhysics ()
+    {
+        rb.useGravity = false;
+        rb.isKinematic = true;
     }
 }
