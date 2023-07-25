@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
-    private float power = 20;
+    private float power = 16;
 
     public Rigidbody rb;
 
@@ -21,7 +21,7 @@ public class Ball : MonoBehaviour
         rb.useGravity = true;
     }
   
-    public void NoPhysics ()
+    public void MakeBodystatic()
     {
         rb.useGravity = false;
         rb.isKinematic = true;

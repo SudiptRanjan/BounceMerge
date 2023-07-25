@@ -31,10 +31,6 @@ public class PlayerInput : MonoBehaviour
 
 
     }
-    //public Vector3 GetMousePosition()
-    //{
-
-    //    return Input.mousePosition;
-    //}
    
+
 }

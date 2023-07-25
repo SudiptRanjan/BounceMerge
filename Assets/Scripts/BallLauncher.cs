@@ -8,13 +8,12 @@ public class BallLauncher : MonoBehaviour
 {
     public List<Ball> BalList;
     public Transform firingPoint;
-    public static BallLauncher instance;
-    //private float power = 20;
-
+    public bool shoot = false;
 
     private void Start()
     {
-        instance = this;
+
+
     }
     private void OnEnable()
     {
@@ -29,37 +28,36 @@ public class BallLauncher : MonoBehaviour
 
     private void RotateTheBallLauncher()
     {
-
+        shoot = true;
         Vector3 mousPosition = Input.mousePosition;
-
         mousPosition.z = Camera.main.transform.position.z;
-       
         Vector3 InputMousePosition = Camera.main.ScreenToWorldPoint( mousPosition);
         Vector3 direction = transform.position - InputMousePosition;
-
-        //Debug.Log(direction);
-
         Quaternion rotation = Quaternion.LookRotation( Vector3.forward,direction);
         transform.rotation = rotation;
-        
     }
 
     public async void  LaunchBalls()
     {
-        for(int i = 0;i<BalList.Count;i++)
+        int ballCount = BalList.Count;
+        for (int i = 0;i< ballCount; i++)
         {
-            //BalList[i].transform.position = firingPoint.transform.position;
-            //BalList[i].rb.velocity = firingPoint.transform.up * power;
-            //BalList[i].transform.position = firingPoint.transform.position;
-            //BalList[i].rb.velocity = transform.up * power;
+          
             BalList[i].Shoot(firingPoint,transform.up);
-            await Task.Delay(200);
-        }
+            
+            Debug.Log(i);
+            Debug.Log("the count of ball" + ballCount);
+            BalList.Remove(BalList[i]);
+            //BalList.RemoveAt(i);
+            await Task.Delay(150);
 
-        BalList.Clear();
+        }
+        //BalList.Clear();
+       
     }
     public void StoreBall(Ball ball)
     {
         BalList.Add(ball);
     }
+    
 }
