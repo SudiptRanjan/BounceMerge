@@ -39,21 +39,20 @@ public class BallLauncher : MonoBehaviour
 
     public async void  LaunchBalls()
     {
+        List<Ball> newBalList = new List<Ball>();
+        newBalList.AddRange(BalList);
         int ballCount = BalList.Count;
-        for (int i = 0;i< ballCount; i++)
+        BalList.Clear();
+
+        for (int i = 0; i <ballCount; i++)
         {
-          
-            BalList[i].Shoot(firingPoint,transform.up);
-            
-            Debug.Log(i);
-            Debug.Log("the count of ball" + ballCount);
-            BalList.Remove(BalList[i]);
-            //BalList.RemoveAt(i);
+            newBalList[i].Shoot(firingPoint, -transform.up);
             await Task.Delay(150);
+            
 
         }
-        //BalList.Clear();
-       
+
+
     }
     public void StoreBall(Ball ball)
     {

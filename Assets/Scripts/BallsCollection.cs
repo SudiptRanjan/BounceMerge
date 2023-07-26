@@ -7,18 +7,16 @@ public class BallsCollection : MonoBehaviour
     public List<Transform> pointList;
     public Ball ballPrefab;
     public BallLauncher ballLauncher;
-    public int noOFBalls = 2;
+    public int numberOfBalls = 2;
 
     private void Start()
     {
-        for(int i = 0;i< noOFBalls; i++)
+        for(int i = 0;i< numberOfBalls; i++)
         {
             Ball initialBall = Instantiate(ballPrefab);
             initialBall.MakeBodystatic();
             ballLauncher.StoreBall(initialBall);
-            int indexStart = ballLauncher.BalList.Count - 1;
-
-            initialBall.transform.position = pointList[indexStart].transform.position;
+            initialBall.transform.position = pointList[i].transform.position;
 
         }
     }
@@ -30,7 +28,7 @@ public class BallsCollection : MonoBehaviour
         ball.MakeBodystatic();
         ballLauncher.StoreBall(ball);
         int index = ballLauncher.BalList.Count - 1;
-            ball.transform.position = pointList[index].transform.position;
+        ball.transform.position = pointList[index].transform.position;
 
     }
 }
