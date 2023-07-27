@@ -7,7 +7,10 @@ public class BallsCollection : MonoBehaviour
     public List<Transform> pointList;
     public Ball ballPrefab;
     public BallLauncher ballLauncher;
+    public BlockSpawner blockSpawner;
     public int numberOfBalls = 2;
+
+    public List<Ball> collidedBallistint ;
 
     private void Start()
     {
@@ -30,5 +33,16 @@ public class BallsCollection : MonoBehaviour
         int index = ballLauncher.BalList.Count - 1;
         ball.transform.position = pointList[index].transform.position;
 
+        //collidedBallistint.Add(ball);
+        //Debug.Log(collidedBallistint.Count);
+
+        if ( ballLauncher.ballCount == ballLauncher.BalList.Count)
+        {
+            blockSpawner.SpawnBlocks();
+        }
+
     }
+
+
+
 }

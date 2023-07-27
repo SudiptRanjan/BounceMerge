@@ -5,9 +5,11 @@ using TMPro;
 
 public class Block : MonoBehaviour
 {
+    public BlockSpawner blockSpawner;
     private TextMeshPro numberText;
     public int hitNumber =7;
     public Rigidbody rb;
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -19,7 +21,7 @@ public class Block : MonoBehaviour
     // Update is called once per frame
     public void SetBlockNo(int hits)
     {
-        hits = hitNumber;
+        hitNumber = hits;
         UpdateTheText();
     }
     void UpdateTheText()
@@ -34,7 +36,7 @@ public class Block : MonoBehaviour
         if(ball!= null)
         {
             hitNumber -= ball.ballNo;
-            Debug.Log("ball value===" + ball.ballNo);
+            //Debug.Log("ball value===" + ball.ballNo);
             //hitNumber--;
             if (hitNumber > 0)
             {
@@ -42,7 +44,9 @@ public class Block : MonoBehaviour
             }
             else
             {
+               
                 Destroy(gameObject);
+
             }
         }
        

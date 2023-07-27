@@ -8,8 +8,9 @@ public class BallLauncher : MonoBehaviour
 {
     public List<Ball> BalList;
     public Transform firingPoint;
+    public BallsCollection ballsCollection;
     public bool shoot = false;
-
+    public int ballCount;
     private void Start()
     {
 
@@ -41,22 +42,27 @@ public class BallLauncher : MonoBehaviour
     {
         List<Ball> newBalList = new List<Ball>();
         newBalList.AddRange(BalList);
-        int ballCount = BalList.Count;
+         ballCount = BalList.Count;
         BalList.Clear();
 
         for (int i = 0; i <ballCount; i++)
         {
             newBalList[i].Shoot(firingPoint, -transform.up);
             await Task.Delay(150);
-            
 
         }
 
+    }
+    public void BallsWhenFired()
+    {
+        List<Ball> firedBalls = new List<Ball>();
+        firedBalls.AddRange(BalList);
 
     }
     public void StoreBall(Ball ball)
     {
         BalList.Add(ball);
+
     }
-    
+
 }
