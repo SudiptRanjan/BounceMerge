@@ -882,6 +882,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitNumber: 7
   rb: {fileID: 248696159}
+  randomBallPrefab: {fileID: 0}
 --- !u!1 &268572587
 GameObject:
   m_ObjectHideFlags: 0
@@ -2814,14 +2815,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.0000043575574, y: 0.9994402, z: -0.033457465, w: 0.00013016879}
-  m_LocalPosition: {x: -0.16, y: 8.68, z: 34.3}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: -0.16, y: 5.78, z: 34.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 3.835, y: 179.985, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!4 &983230167 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7088299349168783539, guid: eb8066081fd884347acd75f48fd979ff, type: 3}
@@ -2899,6 +2900,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitNumber: 7
   rb: {fileID: 1030399044}
+  randomBallPrefab: {fileID: 0}
 --- !u!65 &1030399046
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3195,6 +3197,7 @@ MonoBehaviour:
   blockPrefab: {fileID: 7088299349168783549, guid: eb8066081fd884347acd75f48fd979ff, type: 3}
   distance: 3.5
   listOfBlocks: []
+  ballLauncher: {fileID: 2004821745}
 --- !u!4 &1275664641
 Transform:
   m_ObjectHideFlags: 0
@@ -3439,6 +3442,8 @@ MonoBehaviour:
   ballPrefab: {fileID: 323036390058751570, guid: 38a1fbccd10a6490ab7b280b091055ab, type: 3}
   ballLauncher: {fileID: 2004821745}
   numberOfBalls: 3
+  playerInput: {fileID: 2004821750}
+  collidedBallistint: []
 --- !u!1 &1355183377
 GameObject:
   m_ObjectHideFlags: 0
@@ -4447,6 +4452,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitNumber: 7
   rb: {fileID: 1595870983}
+  randomBallPrefab: {fileID: 0}
 --- !u!65 &1595870985
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4833,6 +4839,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitNumber: 7
   rb: {fileID: 1872724345}
+  randomBallPrefab: {fileID: 0}
 --- !u!65 &1872724347
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5157,6 +5164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitNumber: 7
   rb: {fileID: 1952040896}
+  randomBallPrefab: {fileID: 0}
 --- !u!65 &1952040898
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5287,6 +5295,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitNumber: 7
   rb: {fileID: 1963284803}
+  randomBallPrefab: {fileID: 0}
 --- !u!65 &1963284805
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5501,7 +5510,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BalList: []
   firingPoint: {fileID: 1048176493}
-  shoot: 1
+  ballCount: 0
+  playerInput: {fileID: 2004821750}
 --- !u!136 &2004821746
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5595,6 +5605,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0ba8bfd1d1eb4643a8020a84df19e66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shoot: 0
 --- !u!1001 &2020538141
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6101,11 +6112,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 323036390058751569, guid: 38a1fbccd10a6490ab7b280b091055ab, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.5262709
+      value: -8.6
       objectReference: {fileID: 0}
     - target: {fileID: 323036390058751569, guid: 38a1fbccd10a6490ab7b280b091055ab, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 12.142141
+      value: 8.1
       objectReference: {fileID: 0}
     - target: {fileID: 323036390058751569, guid: 38a1fbccd10a6490ab7b280b091055ab, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6217,8 +6228,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7088299349168783549, guid: eb8066081fd884347acd75f48fd979ff, type: 3}
-      propertyPath: hitNumber
-      value: 0
-      objectReference: {fileID: 0}
+      propertyPath: blockSpawner
+      value: 
+      objectReference: {fileID: 1275664640}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb8066081fd884347acd75f48fd979ff, type: 3}

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,10 +8,14 @@ public class BallsCollection : MonoBehaviour
     public List<Transform> pointList;
     public Ball ballPrefab;
     public BallLauncher ballLauncher;
-    public BlockSpawner blockSpawner;
     public int numberOfBalls = 2;
+    public PlayerInput playerInput;
 
     public List<Ball> collidedBallistint ;
+    public delegate void SpawningOfBlocks();
+    public static event SpawningOfBlocks BlocksSpawn;
+    public static event SpawningOfBlocks BallLauncher;
+    public static event SpawningOfBlocks Stoprotaing;
 
     private void Start()
     {
@@ -23,6 +28,7 @@ public class BallsCollection : MonoBehaviour
 
         }
     }
+   
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -33,14 +39,15 @@ public class BallsCollection : MonoBehaviour
         int index = ballLauncher.BalList.Count - 1;
         ball.transform.position = pointList[index].transform.position;
 
-        //collidedBallistint.Add(ball);
-        //Debug.Log(collidedBallistint.Count);
-
-        if ( ballLauncher.ballCount == ballLauncher.BalList.Count)
+        if (BlocksSpawn != null)
         {
-            blockSpawner.SpawnBlocks();
+            if (ballLauncher.ballCount == ballLauncher.BalList.Count)
+            {
+                playerInput.shoot = false;
+                BlocksSpawn();
+                //BallLauncher();
+            }
         }
-
     }
 
 

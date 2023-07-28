@@ -8,14 +8,24 @@ public class BlockSpawner : MonoBehaviour
     public float distance = 4;
     private int multiplyer = 1;
     public List<Block> listOfBlocks;
-    public static BlockSpawner instance;
-    private void Awake()
-    {
-        instance = this;
-    }
+  
+    public BallLauncher ballLauncher;
+
     private void OnEnable()
     {
         SpawnBlocks();
+        BallsCollection.BlocksSpawn += SpawnBlocks;
+        Block.RemoveBallFromlist += RemoveBalls;
+    }
+    private void OnDisable()
+    {
+        BallsCollection.BlocksSpawn -= SpawnBlocks;
+        Block.RemoveBallFromlist -= RemoveBalls;
+    }
+
+    public void RemoveBalls(Block block)
+    {
+        listOfBlocks.Remove(block);
     }
 
     public void SpawnBlocks()
@@ -26,21 +36,25 @@ public class BlockSpawner : MonoBehaviour
             {
                 block.transform.position += Vector3.up * distance;
             }
-
         }
-        for(int i = 0;i<4;i++)
+
+
+        for (int i = 0; i < 4; i++)
         {
-
-            Vector3 position = transform.position;
-            position +=- distance * i * Vector3.right;
-            Block createdBlocks = Instantiate(blockPrefab, position, Quaternion.identity);
-            int blockValue = Random.Range(1, 5 * multiplyer);
-            createdBlocks.SetBlockNo(blockValue);
-            listOfBlocks.Add(createdBlocks);
-
-
+            if (Random.Range(0, 100) > 40)
+            {
+                   Vector3 position = transform.position;
+                   position += -distance * i * Vector3.right;
+                   Block createdBlocks = Instantiate(blockPrefab, position, Quaternion.identity);
+                   int blockValue = Random.Range(1, 5 * multiplyer);
+                   createdBlocks.SetBlockNo(blockValue);
+                   listOfBlocks.Add(createdBlocks);
+            }
         }
+        
+        
         multiplyer++;
+      
       
     }
 }

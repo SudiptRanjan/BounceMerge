@@ -8,28 +8,32 @@ public class BallLauncher : MonoBehaviour
 {
     public List<Ball> BalList;
     public Transform firingPoint;
-    public BallsCollection ballsCollection;
-    public bool shoot = false;
     public int ballCount;
-    private void Start()
-    {
+    public PlayerInput playerInput;
+    public delegate void ControlInput();
 
-
-    }
     private void OnEnable()
     {
         PlayerInput.OnClick += RotateTheBallLauncher;
         PlayerInput.OnClickUp += LaunchBalls;
+        Block.AddNewBallsToList += IncreaseBallCount;
+        //BallsCollection.BallLauncher += LaunchBalls;
+        //BallsCollection.Stoprotaing += RotateTheBallLauncher;
     }
+
     private void OnDisable()
     {
         PlayerInput.OnClick -= RotateTheBallLauncher;
         PlayerInput.OnClickUp -= LaunchBalls;
+        Block.AddNewBallsToList += IncreaseBallCount;
+
+        //BallsCollection.BallLauncher -= LaunchBalls;
+        //BallsCollection.Stoprotaing -= RotateTheBallLauncher;
+
     }
 
     private void RotateTheBallLauncher()
     {
-        shoot = true;
         Vector3 mousPosition = Input.mousePosition;
         mousPosition.z = Camera.main.transform.position.z;
         Vector3 InputMousePosition = Camera.main.ScreenToWorldPoint( mousPosition);
@@ -42,27 +46,24 @@ public class BallLauncher : MonoBehaviour
     {
         List<Ball> newBalList = new List<Ball>();
         newBalList.AddRange(BalList);
+        IncreaseBallCount();
          ballCount = BalList.Count;
         BalList.Clear();
-
-        for (int i = 0; i <ballCount; i++)
+        for (int i = 0; i < newBalList.Count; i++)
         {
             newBalList[i].Shoot(firingPoint, -transform.up);
             await Task.Delay(150);
-
         }
-
+        playerInput.shoot = true;
     }
-    public void BallsWhenFired()
+    public void IncreaseBallCount()
     {
-        List<Ball> firedBalls = new List<Ball>();
-        firedBalls.AddRange(BalList);
-
+        ballCount++;
     }
     public void StoreBall(Ball ball)
     {
         BalList.Add(ball);
 
     }
-
+    
 }

@@ -112,9 +112,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81e3117e9165541afac480106440d2cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blockSpawner: {fileID: 0}
   hitNumber: 0
   rb: {fileID: 7088299349168783548}
+  randomBallPrefab: {fileID: 323036390058751570, guid: 38a1fbccd10a6490ab7b280b091055ab, type: 3}
 --- !u!54 &7088299349168783548
 Rigidbody:
   m_ObjectHideFlags: 0
