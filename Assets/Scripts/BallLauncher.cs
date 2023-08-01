@@ -10,15 +10,14 @@ public class BallLauncher : MonoBehaviour
     public Transform firingPoint;
     public int ballCount;
     public PlayerInput playerInput;
-    public delegate void ControlInput();
+    public BallsCollection ballsCollection;
 
     private void OnEnable()
     {
         PlayerInput.OnClick += RotateTheBallLauncher;
         PlayerInput.OnClickUp += LaunchBalls;
         Block.AddNewBallsToList += IncreaseBallCount;
-        //BallsCollection.BallLauncher += LaunchBalls;
-        //BallsCollection.Stoprotaing += RotateTheBallLauncher;
+      
     }
 
     private void OnDisable()
@@ -26,11 +25,8 @@ public class BallLauncher : MonoBehaviour
         PlayerInput.OnClick -= RotateTheBallLauncher;
         PlayerInput.OnClickUp -= LaunchBalls;
         Block.AddNewBallsToList += IncreaseBallCount;
-
-        //BallsCollection.BallLauncher -= LaunchBalls;
-        //BallsCollection.Stoprotaing -= RotateTheBallLauncher;
-
     }
+   
 
     private void RotateTheBallLauncher()
     {
@@ -54,7 +50,9 @@ public class BallLauncher : MonoBehaviour
             newBalList[i].Shoot(firingPoint, -transform.up);
             await Task.Delay(150);
         }
-        playerInput.shoot = true;
+      
+        gameObject.GetComponent<PlayerInput>().enabled = false;
+
     }
     public void IncreaseBallCount()
     {
@@ -65,5 +63,32 @@ public class BallLauncher : MonoBehaviour
         BalList.Add(ball);
 
     }
-    
+    public void MergeBalls()
+    {
+        for (int i = ballCount - 1; i > 0; i--)
+        {
+
+            if (BalList[i - 1].ballNo == BalList[i].ballNo)
+            {
+
+                BalList[i].ballNo *= 2;
+                BalList[i].UpdateText();
+                Ball ball = BalList[i - 1];
+                BalList.Remove(ball);
+                Destroy(ball.gameObject);
+            }
+            ballCount--;
+
+        }
+        List<Ball> MergedBallsList = new List<Ball>();
+        MergedBallsList.AddRange(BalList);
+        for(int j = 0; j< MergedBallsList.Count;j++)
+        {
+            MergedBallsList[j].transform.position = ballsCollection.pointList[j].transform.position;
+        }
+        
+
+
+    }
+
 }

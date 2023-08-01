@@ -5,7 +5,7 @@ using TMPro;
 
 public class Block : MonoBehaviour
 {
-    //public BlockSpawner blockSpawner;
+
     private TextMeshPro numberText;
     public int hitNumber =7;
     public Rigidbody rb;
@@ -14,7 +14,7 @@ public class Block : MonoBehaviour
     public Ball randomBallPrefab;
     public  delegate void AddNewBalls();
     public static event AddNewBalls AddNewBallsToList;
-    // Start is called before the first frame update
+
     private void Awake()
     {
         numberText = GetComponentInChildren<TextMeshPro>();
@@ -36,7 +36,7 @@ public class Block : MonoBehaviour
     }
      void  SpawnRandomBalls()
     {
-        if(Random.Range(1,100)>40)
+        if(Random.Range(1,100)>30)
         {
             Ball initialBall = Instantiate(randomBallPrefab, transform.position, Quaternion.identity);
             AddNewBallsToList();

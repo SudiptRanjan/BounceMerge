@@ -8,14 +8,13 @@ public class PlayerInput : MonoBehaviour
     public static event cliclAction OnClick;
     public static event cliclAction OnClickUp;
 
-    public bool shoot ;
+    //public bool shoot ;
 
-
-    // Update is called once per frame
+   
     void Update( )
     {
-        if (shoot) return;
-        
+        //if (shoot) return;
+
             if (Input.GetKey(KeyCode.Mouse0))
             {
                 if (OnClick != null)
@@ -33,6 +32,4 @@ public class PlayerInput : MonoBehaviour
         }
 
     }
-   
-
 }

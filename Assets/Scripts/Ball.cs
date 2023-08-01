@@ -18,11 +18,11 @@ public class Ball : MonoBehaviour
         randomNumber = (int)Mathf.Pow(2, Random.Range(1, 4));
         SetTheNumber(randomNumber);
     }
-    //private void UpdateText()
-    //{
-    //    ballValue.SetText(ballNo.ToString());
+    public void UpdateText()
+    {
+        ballValue.SetText(ballNo.ToString());
 
-    //}
+    }
     private void SetTheNumber(int number)
     {
         ballNo = number;

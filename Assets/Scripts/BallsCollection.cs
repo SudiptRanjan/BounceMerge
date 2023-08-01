@@ -9,13 +9,9 @@ public class BallsCollection : MonoBehaviour
     public Ball ballPrefab;
     public BallLauncher ballLauncher;
     public int numberOfBalls = 2;
-    public PlayerInput playerInput;
 
-    public List<Ball> collidedBallistint ;
     public delegate void SpawningOfBlocks();
     public static event SpawningOfBlocks BlocksSpawn;
-    public static event SpawningOfBlocks BallLauncher;
-    public static event SpawningOfBlocks Stoprotaing;
 
     private void Start()
     {
@@ -28,7 +24,7 @@ public class BallsCollection : MonoBehaviour
 
         }
     }
-   
+
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -43,9 +39,12 @@ public class BallsCollection : MonoBehaviour
         {
             if (ballLauncher.ballCount == ballLauncher.BalList.Count)
             {
-                playerInput.shoot = false;
+                ballLauncher.MergeBalls();
+
+                ballLauncher.GetComponent<PlayerInput>().enabled = true;
+
+                //playerInput.shoot = false;
                 BlocksSpawn();
-                //BallLauncher();
             }
         }
     }
