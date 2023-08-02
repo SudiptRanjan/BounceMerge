@@ -36,7 +36,7 @@ public class Block : MonoBehaviour
     }
      void  SpawnRandomBalls()
     {
-        if(Random.Range(1,100)>30)
+        if (Random.Range(1, 100) > 70)
         {
             Ball initialBall = Instantiate(randomBallPrefab, transform.position, Quaternion.identity);
             AddNewBallsToList();

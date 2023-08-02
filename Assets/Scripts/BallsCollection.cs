@@ -13,6 +13,9 @@ public class BallsCollection : MonoBehaviour
     public delegate void SpawningOfBlocks();
     public static event SpawningOfBlocks BlocksSpawn;
 
+    public delegate void MergingOfBalls();
+    public static event MergingOfBalls MergingOfBall ;
+
     private void Start()
     {
         for(int i = 0;i< numberOfBalls; i++)
@@ -39,11 +42,14 @@ public class BallsCollection : MonoBehaviour
         {
             if (ballLauncher.ballCount == ballLauncher.BalList.Count)
             {
-                ballLauncher.MergeBalls();
+                //ballLauncher.MergeBalls();
+                if(MergingOfBall != null)
+                {
+                    MergingOfBall();
+                }
 
                 ballLauncher.GetComponent<PlayerInput>().enabled = true;
 
-                //playerInput.shoot = false;
                 BlocksSpawn();
             }
         }

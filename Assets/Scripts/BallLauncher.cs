@@ -1,4 +1,3 @@
-
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -9,24 +8,25 @@ public class BallLauncher : MonoBehaviour
     public List<Ball> BalList;
     public Transform firingPoint;
     public int ballCount;
-    public PlayerInput playerInput;
     public BallsCollection ballsCollection;
+    public bool merge = false ;
 
     private void OnEnable()
     {
         PlayerInput.OnClick += RotateTheBallLauncher;
         PlayerInput.OnClickUp += LaunchBalls;
         Block.AddNewBallsToList += IncreaseBallCount;
-      
+        BallsCollection.MergingOfBall += MergeBalls;
     }
 
     private void OnDisable()
     {
         PlayerInput.OnClick -= RotateTheBallLauncher;
         PlayerInput.OnClickUp -= LaunchBalls;
-        Block.AddNewBallsToList += IncreaseBallCount;
+        Block.AddNewBallsToList -= IncreaseBallCount;
+        BallsCollection.MergingOfBall -= MergeBalls;
+
     }
-   
 
     private void RotateTheBallLauncher()
     {
@@ -65,29 +65,56 @@ public class BallLauncher : MonoBehaviour
     }
     public void MergeBalls()
     {
-        for (int i = ballCount - 1; i > 0; i--)
+        while(ballCount>0)
         {
-
-            if (BalList[i - 1].ballNo == BalList[i].ballNo)
+            for (int i = ballCount - 1; i > 0; i--)
             {
+                if (BalList[i - 1].ballNo == BalList[i].ballNo)
+                {
 
-                BalList[i].ballNo *= 2;
-                BalList[i].UpdateText();
-                Ball ball = BalList[i - 1];
-                BalList.Remove(ball);
-                Destroy(ball.gameObject);
+                    BalList[i].ballNo *= 2;
+                    BalList[i].UpdateText();
+                    Ball ball = BalList[i - 1];
+                    BalList.Remove(ball);
+                    Destroy(ball.gameObject);
+                    ballCount--;
+
+                }
             }
-            ballCount--;
-
+            
+            List<Ball> MergedBallsList = new List<Ball>();
+            MergedBallsList.AddRange(BalList);
+            for (int j = 0; j < MergedBallsList.Count; j++)
+            {
+                MergedBallsList[j].transform.position = ballsCollection.pointList[j].transform.position;
+            }
+            break;
         }
-        List<Ball> MergedBallsList = new List<Ball>();
-        MergedBallsList.AddRange(BalList);
-        for(int j = 0; j< MergedBallsList.Count;j++)
-        {
-            MergedBallsList[j].transform.position = ballsCollection.pointList[j].transform.position;
-        }
-        
+       
 
+
+
+
+        //for (int i = ballCount - 1; i > 0; i--)
+        //{
+        //    if (BalList[i - 1].ballNo == BalList[i].ballNo)
+        //    {
+
+        //        BalList[i].ballNo *= 2;
+        //        BalList[i].UpdateText();
+        //        Ball ball = BalList[i - 1];
+        //        BalList.Remove(ball);
+        //        Destroy(ball.gameObject);
+        //        ballCount--;
+
+        //    }
+        //}
+        //List<Ball> MergedBallsList = new List<Ball>();
+        //MergedBallsList.AddRange(BalList);
+        //for (int j = 0; j < MergedBallsList.Count; j++)
+        //{
+        //    MergedBallsList[j].transform.position = ballsCollection.pointList[j].transform.position;
+        //}
 
     }
 

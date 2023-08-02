@@ -3441,7 +3441,7 @@ MonoBehaviour:
   - {fileID: 491958224}
   ballPrefab: {fileID: 323036390058751570, guid: 38a1fbccd10a6490ab7b280b091055ab, type: 3}
   ballLauncher: {fileID: 2004821745}
-  numberOfBalls: 3
+  numberOfBalls: 15
 --- !u!1 &1355183377
 GameObject:
   m_ObjectHideFlags: 0
@@ -5509,8 +5509,8 @@ MonoBehaviour:
   BalList: []
   firingPoint: {fileID: 1048176493}
   ballCount: 0
-  playerInput: {fileID: 2004821750}
   ballsCollection: {fileID: 1309520158}
+  merge: 0
 --- !u!136 &2004821746
 CapsuleCollider:
   m_ObjectHideFlags: 0
