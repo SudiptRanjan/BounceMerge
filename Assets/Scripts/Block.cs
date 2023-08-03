@@ -7,49 +7,57 @@ public class Block : MonoBehaviour
 {
 
     private TextMeshPro numberText;
-    public int hitNumber =7;
-    public Rigidbody rb;
+    private int hitNumber ;
+    private Rigidbody rb;
+    public Ball randomBallPrefab;
+
+    int score = 0;
+    public List<Color> listColor = new List<Color>();
     public delegate void RemoveBall(Block block);
     public static event RemoveBall RemoveBallFromlist;
-    public Ball randomBallPrefab;
     public  delegate void AddNewBalls();
     public static event AddNewBalls AddNewBallsToList;
-
     private void Awake()
     {
         numberText = GetComponentInChildren<TextMeshPro>();
-        //UpdateTheText();
-        //numberText.SetText(hitNumber.ToString());
     }
-   
-    // Update is called once per frame
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
+
     public void SetBlockNo(int hits)
     {
         hitNumber = hits;
         UpdateTheText();
     }
+
     void UpdateTheText()
 
     {
         numberText.SetText(hitNumber.ToString());
 
     }
-     void  SpawnRandomBalls()
+
+    void  SpawnRandomBalls()
     {
-        if (Random.Range(1, 100) > 70)
+        if (Random.Range(1, 100) > 20)
         {
             Ball initialBall = Instantiate(randomBallPrefab, transform.position, Quaternion.identity);
+            initialBall.GetComponent<MeshRenderer>().material.color = listColor[Random.Range(0, listColor.Count)];
+
             AddNewBallsToList();
         }
     }
+
     private void OnCollisionEnter(Collision collision)
     {
         Ball ball = collision.gameObject.GetComponent<Ball>();
         if(ball!= null)
         {
             hitNumber -= ball.ballNo;
-            //Debug.Log("ball value===" + ball.ballNo);
-            //hitNumber--;
+            Debug.Log("block value===" + hitNumber);
             if (hitNumber > 0)
             {
                 UpdateTheText();

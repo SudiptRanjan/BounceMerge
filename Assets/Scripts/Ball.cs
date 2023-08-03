@@ -6,7 +6,7 @@ using TMPro;
 public class Ball : MonoBehaviour
 {
     private float power = 20;
-    public TextMeshPro ballValue;
+    private TextMeshPro ballValue;
     public int ballNo ;
     public Rigidbody rb;
     int randomNumber;

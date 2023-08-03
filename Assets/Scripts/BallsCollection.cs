@@ -1,4 +1,4 @@
-using System;
+//using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +9,7 @@ public class BallsCollection : MonoBehaviour
     public Ball ballPrefab;
     public BallLauncher ballLauncher;
     public int numberOfBalls = 2;
-
+    public List<Color> coloredBalls = new List<Color>();
     public delegate void SpawningOfBlocks();
     public static event SpawningOfBlocks BlocksSpawn;
 
@@ -21,13 +21,13 @@ public class BallsCollection : MonoBehaviour
         for(int i = 0;i< numberOfBalls; i++)
         {
             Ball initialBall = Instantiate(ballPrefab);
+            initialBall.GetComponent<MeshRenderer>().material.color = coloredBalls[Random.Range(0, coloredBalls.Count)];
             initialBall.MakeBodystatic();
             ballLauncher.StoreBall(initialBall);
             initialBall.transform.position = pointList[i].transform.position;
-
         }
     }
-
+    
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -42,13 +42,15 @@ public class BallsCollection : MonoBehaviour
         {
             if (ballLauncher.ballCount == ballLauncher.BalList.Count)
             {
+
                 //ballLauncher.MergeBalls();
-                if(MergingOfBall != null)
+                if (MergingOfBall != null)
                 {
                     MergingOfBall();
+                    //gameObject.GetComponent<PlayerInput>().enabled = false;
+
                 }
 
-                ballLauncher.GetComponent<PlayerInput>().enabled = true;
 
                 BlocksSpawn();
             }
