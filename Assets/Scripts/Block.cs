@@ -5,13 +5,13 @@ using TMPro;
 
 public class Block : MonoBehaviour
 {
-
     private TextMeshPro numberText;
     private int hitNumber ;
+    public PopupValue popupValue;
     private Rigidbody rb;
     public Ball randomBallPrefab;
-
-    int score = 0;
+    public Transform pre;
+    //int score = 0;
     public List<Color> listColor = new List<Color>();
     public delegate void RemoveBall(Block block);
     public static event RemoveBall RemoveBallFromlist;
@@ -24,6 +24,7 @@ public class Block : MonoBehaviour
 
     private void Start()
     {
+
         rb = GetComponent<Rigidbody>();
     }
 
@@ -32,15 +33,18 @@ public class Block : MonoBehaviour
         hitNumber = hits;
         UpdateTheText();
     }
+    
 
     void UpdateTheText()
 
     {
         numberText.SetText(hitNumber.ToString());
-
+        //numberText.SetText(ballNoInTextPopup.ToString());
     }
 
-    void  SpawnRandomBalls()
+   
+
+    void SpawnRandomBalls()
     {
         if (Random.Range(1, 100) > 20)
         {
@@ -51,19 +55,26 @@ public class Block : MonoBehaviour
         }
     }
 
+   
+
     private void OnCollisionEnter(Collision collision)
     {
         Ball ball = collision.gameObject.GetComponent<Ball>();
-        if(ball!= null)
+
+        if (ball!= null)
         {
             hitNumber -= ball.ballNo;
-            Debug.Log("block value===" + hitNumber);
+            popupValue.SpawnValue(transform.position, ball.ballNo);
+
+            //ballNoInTextPopup = ball.ballNo;
+            //Debug.Log("block value===" + ballNoInTextPopup);
             if (hitNumber > 0)
             {
                 UpdateTheText();
             }
             else
             {
+
                 RemoveBallFromlist(this);
                 Destroy(gameObject);
                 SpawnRandomBalls();
