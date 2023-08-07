@@ -8,7 +8,7 @@ public class PopupValue : MonoBehaviour
 {
     public TextMeshPro ballNoPopUp;
     private int ballNoInTextPopup;
-    public float timer;
+    //public float timer;
     public Color textColor;
     //private TextMesh textMesh;
     //public GameObject popUprefab;
@@ -31,9 +31,8 @@ public class PopupValue : MonoBehaviour
         //await Task.Delay(200);
         transform.position += Vector3.up * moveSpeed;
         //await Task.Delay(1000);
-        //Destroy(gameObject);
-        timer -= Time.deltaTime;
-        if (timer < 0)
+        //timer -= Time.deltaTime;
+        //if (timer < 0)
         {
             float timerSpeed = 0.5f;
             textColor.a -= timerSpeed * Time.deltaTime;

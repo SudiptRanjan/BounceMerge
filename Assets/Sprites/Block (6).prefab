@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7088299349168783550}
   - component: {fileID: 7088299349168783549}
   - component: {fileID: 7088299349168783548}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Block (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7088299349168783538}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.03, y: 8.71, z: 1.84}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2.5, y: 2.5, z: 3.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -113,9 +113,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81e3117e9165541afac480106440d2cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  popupValue: {fileID: 5753136245587147587, guid: f3b542526c921486da680c0313941bcc, type: 3}
+  popupValue: {fileID: 7053463756343705813, guid: 63207c184b6ea475e845cb438cc0c137, type: 3}
   randomBallPrefab: {fileID: 323036390058751570, guid: 38a1fbccd10a6490ab7b280b091055ab, type: 3}
-  pre: {fileID: 2505669747617994824}
   listColor:
   - {r: 0.9433962, g: 0.7176471, b: 0.7176471, a: 0.18039216}
   - {r: 0.6784314, g: 0.99215686, b: 0.6666667, a: 0.19215687}
@@ -147,7 +146,7 @@ GameObject:
   - component: {fileID: 7088299349434168623}
   - component: {fileID: 7088299349434168617}
   - component: {fileID: 7088299349434168616}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TextNumber
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -317,7 +316,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2505669747617994824}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: pre
   m_TagString: Untagged
   m_Icon: {fileID: 0}

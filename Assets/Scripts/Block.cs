@@ -10,7 +10,7 @@ public class Block : MonoBehaviour
     public PopupValue popupValue;
     private Rigidbody rb;
     public Ball randomBallPrefab;
-    public Transform pre;
+    //public Transform pre;
     //int score = 0;
     public List<Color> listColor = new List<Color>();
     public delegate void RemoveBall(Block block);
@@ -60,6 +60,9 @@ public class Block : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         Ball ball = collision.gameObject.GetComponent<Ball>();
+        //FindObjectOfType<AudioManager>().Play("BounceSound");
+        //AudioManager.inst.PlaySound(AudioManager.SoundName.BounceBall);
+        AudioManager.instance.PlaySound(AudioManager.SoundName.BounceBall);
 
         if (ball!= null)
         {
