@@ -5,21 +5,13 @@ using UnityEngine;
 public class GameOver : MonoBehaviour
 {
     public Canvas gameOverCanvas;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    public delegate void ClearAll();
+    public static event ClearAll OnGameOverClearList;
+    
     public void EnableCamrOver()
     {
-        gameOverCanvas.enabled = true;
+        //gameOverCanvas.enabled = true;
+        ScreenManager.instance.SwitchScreen(ScreenType.GameOver);
     }
      
     private void OnTriggerEnter(Collider other)
@@ -28,9 +20,10 @@ public class GameOver : MonoBehaviour
         if (other.gameObject.layer ==8)
         {
             AudioManager.instance.PlaySound(AudioManager.SoundName.GameOve);
+            OnGameOverClearList();
             EnableCamrOver();
-            Debug.Log("Game Over");
-            Time.timeScale = 0f;
+            //SpawnBlocks()
+           
         }
     }
 }

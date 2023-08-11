@@ -11,12 +11,11 @@ public class BallLauncher : MonoBehaviour
     public int ballCount;
     public BallsCollection ballsCollection;
     public LineRenderer lineRenderer;
-    //public bool merge = false ;
 
     private void Start()
     {
         lineRenderer = GetComponent<LineRenderer>();
-        //lineRenderer.enabled = false;
+        DisableTheInput();
     }
     private void OnEnable()
     {
@@ -25,6 +24,8 @@ public class BallLauncher : MonoBehaviour
         PlayerInput.OnClickUp += LaunchBalls;
         Block.AddNewBallsToList += IncreaseBallCount;
         BallsCollection.MergingOfBall += MergeBalls;
+        GameOver.OnGameOverClearList += ClearBallList;
+
     }
 
     private void OnDisable()
@@ -34,7 +35,7 @@ public class BallLauncher : MonoBehaviour
         PlayerInput.OnClickUp -= LaunchBalls;
         Block.AddNewBallsToList -= IncreaseBallCount;
         BallsCollection.MergingOfBall -= MergeBalls;
-
+        GameOver.OnGameOverClearList -= ClearBallList;
     }
 
     private void CreateLineRenderer()
@@ -55,7 +56,7 @@ public class BallLauncher : MonoBehaviour
         transform.rotation = rotation;
     }
 
-    public async void  LaunchBalls()
+    private async void  LaunchBalls()
     {
         lineRenderer.enabled = false;
         List<Ball> newBalList = new List<Ball>();
@@ -72,7 +73,7 @@ public class BallLauncher : MonoBehaviour
         gameObject.GetComponent<PlayerInput>().enabled = false;
 
     }
-    public void IncreaseBallCount()
+    private void IncreaseBallCount()
     {
         ballCount++;
     }
@@ -81,7 +82,29 @@ public class BallLauncher : MonoBehaviour
         BalList.Add(ball);
 
     }
-    public async void MergeBalls()
+
+    public void EnableTheInput()
+    {
+        gameObject.GetComponent<PlayerInput>().enabled = true;
+    }
+
+    public void DisableTheInput()
+    {
+        gameObject.GetComponent<PlayerInput>().enabled = false;
+    }
+    public void ClearBallList()
+    {
+        for (int i = ballCount - 1; i >= 0; i--)
+        {
+                Ball ball = BalList[i];
+                Destroy(ball.gameObject);
+                BalList.RemoveAt(i);
+                ballCount--;
+        }
+        
+    }
+
+    private async void MergeBalls()
     {
 
         bool merged = true;
@@ -115,9 +138,6 @@ public class BallLauncher : MonoBehaviour
                     break;
                 }
             }
-
-            
-
         }
         gameObject.GetComponent<PlayerInput>().enabled = true;
 

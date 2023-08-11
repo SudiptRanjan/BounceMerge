@@ -27,12 +27,9 @@ public class PopupValue : MonoBehaviour
      void Update()
     {
 
-        float moveSpeed = 0.1f;
-        //await Task.Delay(200);
+        float moveSpeed = 0.05f;
         transform.position += Vector3.up * moveSpeed;
-        //await Task.Delay(1000);
-        //timer -= Time.deltaTime;
-        //if (timer < 0)
+      
         {
             float timerSpeed = 0.5f;
             textColor.a -= timerSpeed * Time.deltaTime;
@@ -47,7 +44,6 @@ public class PopupValue : MonoBehaviour
     public void SpawnValue(Vector3 popPosition,int ballValue)
     {
         GameObject spawnPop = Instantiate(gameObject, popPosition, Quaternion.identity);
-        //Debug.Log(spawnPop);
         SetBallNo(ballValue);
     }
     public void SetBallNo(int ballNoInText)

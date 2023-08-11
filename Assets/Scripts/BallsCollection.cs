@@ -18,7 +18,19 @@ public class BallsCollection : MonoBehaviour
 
     private void Start()
     {
-        for(int i = 0;i< numberOfBalls; i++)
+        //for (int i = 0; i < numberOfBalls; i++)
+        //{
+        //    Ball initialBall = Instantiate(ballPrefab);
+        //    initialBall.GetComponent<MeshRenderer>().material.color = coloredBalls[Random.Range(0, coloredBalls.Count)];
+        //    initialBall.MakeBodystatic();
+        //    ballLauncher.StoreBall(initialBall);
+        //    initialBall.transform.position = pointList[i].transform.position;
+        //}
+    }
+
+    public void InstantiateBalls()
+    {
+        for (int i = 0; i < numberOfBalls; i++)
         {
             Ball initialBall = Instantiate(ballPrefab);
             initialBall.GetComponent<MeshRenderer>().material.color = coloredBalls[Random.Range(0, coloredBalls.Count)];
@@ -27,7 +39,6 @@ public class BallsCollection : MonoBehaviour
             initialBall.transform.position = pointList[i].transform.position;
         }
     }
-    
 
     private void OnCollisionEnter(Collision collision)
     {

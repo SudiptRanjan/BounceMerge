@@ -9,24 +9,42 @@ public class BlockSpawner : MonoBehaviour
     private int multiplyer = 1;
     public List<Block> listOfBlocks;
     public List<Color> colors = new List<Color>();
-
+    public int blockcount;
     public BallLauncher ballLauncher;
 
+    private void Start()
+    {
+        //blockcount = listOfBlocks.Count;
+    }
     private void OnEnable()
     {
         SpawnBlocks();
         BallsCollection.BlocksSpawn += SpawnBlocks;
         Block.RemoveBallFromlist += RemoveBalls;
+        GameOver.OnGameOverClearList += ClearAllBlocks;
     }
     private void OnDisable()
     {
         BallsCollection.BlocksSpawn -= SpawnBlocks;
         Block.RemoveBallFromlist -= RemoveBalls;
+        GameOver.OnGameOverClearList -= ClearAllBlocks;
     }
 
     public void RemoveBalls(Block block)
     {
         listOfBlocks.Remove(block);
+    }
+
+    public void ClearAllBlocks()
+    {
+        for (int i = listOfBlocks.Count-1; i >=0 ; i--)
+        {
+            Debug.Log("blocks deleted");
+            Block block = listOfBlocks[i];
+            Destroy(block.gameObject);
+            listOfBlocks.RemoveAt(i);
+
+        }
     }
 
     public void SpawnBlocks()

@@ -8,10 +8,9 @@ public class Block : MonoBehaviour
     private TextMeshPro numberText;
     private int hitNumber ;
     public PopupValue popupValue;
-    private Rigidbody rb;
+    //private Rigidbody rb;
     public Ball randomBallPrefab;
-    //public Transform pre;
-    //int score = 0;
+    //public ScoreUpdate score;
     public List<Color> listColor = new List<Color>();
     public delegate void RemoveBall(Block block);
     public static event RemoveBall RemoveBallFromlist;
@@ -25,7 +24,7 @@ public class Block : MonoBehaviour
     private void Start()
     {
 
-        rb = GetComponent<Rigidbody>();
+        //rb = GetComponent<Rigidbody>();
     }
 
     public void SetBlockNo(int hits)
@@ -67,6 +66,8 @@ public class Block : MonoBehaviour
         if (ball!= null)
         {
             hitNumber -= ball.ballNo;
+            //score.AddScore(ball.ballNo);
+            ScoreUpdate.instance.AddScore(ball.ballNo);
             popupValue.SpawnValue(transform.position, ball.ballNo);
 
             //ballNoInTextPopup = ball.ballNo;

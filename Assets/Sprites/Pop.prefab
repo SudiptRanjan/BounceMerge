@@ -46,7 +46,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ballNoPopUp: {fileID: 4956168921988592894}
-  timer: 0
   textColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &7959867137124109006
 GameObject:
@@ -182,7 +181,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -211,7 +210,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 9.8529, y: 1.3819599, z: 9.036043, w: 2.2310476}
+  m_margin: {x: 8.696486, y: 1.3819599, z: 8.514443, w: 2.2310476}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   _SortingLayer: 0

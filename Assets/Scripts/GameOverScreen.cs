@@ -17,8 +17,9 @@ public class GameOverScreen : BaseScreen
     {
         
     }
-    public void OnclicGameOver()
+    private void OnclicGameOver()
     {
         ScreenManager.instance.SwitchScreen(ScreenType.Start);
     }
+   
 }

@@ -10,12 +10,12 @@ public class ScreenManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        currentScreen.canvas.enabled = true;
     }
     // Start is called before the first frame update
     void Start()
     {
-        
+        currentScreen.canvas.enabled = true;
+
     }
 
     // Update is called once per frame
@@ -40,15 +40,15 @@ public class ScreenManager : MonoBehaviour
 
     public void SwitchScreenBack(ScreenType screenType)
     {
-        //currentScreen.canvas.enabled = false;
+        currentScreen.canvas.enabled = true;
         foreach (BaseScreen baseScreen in screens)
         {
-            //if (baseScreen.screenType == screenType)
+            if (baseScreen.screenType == screenType)
             {
                 baseScreen.canvas.enabled = false;
-                //currentScreen = baseScreen;
+                currentScreen = baseScreen;
                 //Debug.Log("loop failed");
-                //break;
+                break;
             }
         }
     }
