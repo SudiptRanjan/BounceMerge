@@ -39,7 +39,7 @@ public class BlockSpawner : MonoBehaviour
     {
         for (int i = listOfBlocks.Count-1; i >=0 ; i--)
         {
-            Debug.Log("blocks deleted");
+            //Debug.Log("blocks deleted");
             Block block = listOfBlocks[i];
             Destroy(block.gameObject);
             listOfBlocks.RemoveAt(i);
@@ -67,7 +67,7 @@ public class BlockSpawner : MonoBehaviour
                    position += -distance * i * Vector3.right;
                    Block createdBlocks = Instantiate(blockPrefab, position, Quaternion.identity);
                    createdBlocks.GetComponent<MeshRenderer>().material.color = colors[Random.Range(0, colors.Count)];
-                   int blockValue = Random.Range(1, 5 * multiplyer);
+                   int blockValue = Random.Range(4, 5 * multiplyer*multiplyer);
                    createdBlocks.SetBlockNo(blockValue);
                    listOfBlocks.Add(createdBlocks);
             }

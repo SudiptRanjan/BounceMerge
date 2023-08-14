@@ -15,7 +15,7 @@ public class Ball : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         ballValue = GetComponentInChildren<TextMeshPro>();
-        randomNumber = (int)Mathf.Pow(2, Random.Range(1, 4));
+        randomNumber = (int)Mathf.Pow(2, Random.Range(1, 5));
         SetTheNumber(randomNumber);
     }
 

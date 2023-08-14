@@ -95,7 +95,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7088299349168783538}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a1bcc63238e864f08a0f3afe23ddd203, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -116,8 +116,8 @@ MonoBehaviour:
   popupValue: {fileID: 7053463756343705813, guid: 63207c184b6ea475e845cb438cc0c137, type: 3}
   randomBallPrefab: {fileID: 323036390058751570, guid: 38a1fbccd10a6490ab7b280b091055ab, type: 3}
   listColor:
-  - {r: 0.9433962, g: 0.7176471, b: 0.7176471, a: 0.18039216}
-  - {r: 0.6784314, g: 0.99215686, b: 0.6666667, a: 0.19215687}
+  - {r: 0.9056604, g: 0.021359911, b: 0.4473742, a: 0.18039216}
+  - {r: 0.51460445, g: 0, b: 0.5188679, a: 0.19215687}
   - {r: 0.5566038, g: 0.53333336, b: 0.98039216, a: 0.2}
 --- !u!54 &7088299349168783548
 Rigidbody:

@@ -27,5 +27,12 @@ public class ScoreUpdate : MonoBehaviour
     public void AddScore(int udscore)
     {
         score = score + udscore;
+        HighScore.instance.UpdateHighScore(score);
+    }
+
+
+    public void ScoreWhenGameOver()
+    {
+        score = 0 ;
     }
 }
