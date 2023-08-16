@@ -106,7 +106,7 @@ public class BallLauncher : MonoBehaviour
 
     private async void MergeBalls()
     {
-
+        int pointlistCount = ballsCollection.pointList.Count - 1;
         bool merged = true;
         while(merged)
         {
@@ -130,7 +130,17 @@ public class BallLauncher : MonoBehaviour
                     MergedBallsList.AddRange(BalList);
                     for (int j = 0; j < MergedBallsList.Count; j++)
                     {
-                        MergedBallsList[j].transform.position = ballsCollection.pointList[j].transform.position;
+                        if (ballCount - 1 <=  ballsCollection.pointList.Count - 1)
+                        {
+                            MergedBallsList[j].transform.position = ballsCollection.pointList[j].transform.position;
+                            //Debug.Log(" Merged And move forward");
+                        }
+                        else
+                        {
+                            //Debug.Log("Can't be Merged And move forward");
+                            //MergedBallsList[j].transform.position = ballsCollection.pointList[pointlistCount].transform.position;
+                        }
+                        //MergedBallsList[j].transform.position = ballsCollection.pointList[j].transform.position;
                     }
                    
                     await Task.Delay(500);

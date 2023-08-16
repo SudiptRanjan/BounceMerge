@@ -47,7 +47,20 @@ public class BallsCollection : MonoBehaviour
         ball.MakeBodystatic();
         ballLauncher.StoreBall(ball);
         int index = ballLauncher.BalList.Count - 1;
-        ball.transform.position = pointList[index].transform.position;
+        int indexOfPoints = pointList.Count -1;
+
+        //Debug.Log(indexOfPoints);
+        if(index <= indexOfPoints)
+        {
+            ball.transform.position = pointList[index].transform.position;
+
+        }
+        else
+        {
+            ball.transform.position= pointList[indexOfPoints].transform.position;
+            //Debug.Log("stored in the last position");
+        }
+        //ball.transform.position = pointList[index].transform.position;
 
         if (BlocksSpawn != null)
         {
@@ -58,6 +71,7 @@ public class BallsCollection : MonoBehaviour
                 if (MergingOfBall != null)
                 {
                     MergingOfBall();
+                    Time.timeScale = 1F;
                     //gameObject.GetComponent<PlayerInput>().enabled = false;
 
                 }

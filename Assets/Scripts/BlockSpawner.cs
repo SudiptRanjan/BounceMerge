@@ -9,12 +9,16 @@ public class BlockSpawner : MonoBehaviour
     private int multiplyer = 1;
     public List<Block> listOfBlocks;
     public List<Color> colors = new List<Color>();
-    public int blockcount;
     public BallLauncher ballLauncher;
 
     private void Start()
     {
         //blockcount = listOfBlocks.Count;
+        SpawnBlocks();
+        SpawnBlocks();
+        SpawnBlocks();
+
+
     }
     private void OnEnable()
     {
@@ -67,7 +71,7 @@ public class BlockSpawner : MonoBehaviour
                    position += -distance * i * Vector3.right;
                    Block createdBlocks = Instantiate(blockPrefab, position, Quaternion.identity);
                    createdBlocks.GetComponent<MeshRenderer>().material.color = colors[Random.Range(0, colors.Count)];
-                   int blockValue = Random.Range(4, 5 * multiplyer*multiplyer);
+                   int blockValue = Random.Range(4, 8 * multiplyer*multiplyer);
                    createdBlocks.SetBlockNo(blockValue);
                    listOfBlocks.Add(createdBlocks);
             }
