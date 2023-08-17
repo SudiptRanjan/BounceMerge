@@ -11,7 +11,7 @@ public class Ball : MonoBehaviour
     public Rigidbody rb;
     private Vector3 direction;
     private float force;
-    //private SphereCollider sphereCollider;
+    private SphereCollider sphereCollider;
     int randomNumber;
 
     void Start()
@@ -19,9 +19,9 @@ public class Ball : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         //direction = new Vector3(Random.value, Random.value, 0);
         ballValue = GetComponentInChildren<TextMeshPro>();
-        randomNumber = (int)Mathf.Pow(2, Random.Range(1, 2));
+        randomNumber = (int)Mathf.Pow(2, Random.Range(1, 5));
         SetTheNumber(randomNumber);
-        //sphereCollider = GetComponent<SphereCollider>();
+        sphereCollider = GetComponent<SphereCollider>();
     }
 
     public void UpdateText()
@@ -31,14 +31,11 @@ public class Ball : MonoBehaviour
     }
     //void FixedUpdate()
     //{
-    //     force = (float)Random.Range(-10, 10);
-    //    direction = new Vector3(Random.value, Random.value, 0);
+    //    force = (float)Random.Range(-10, 10);
+    //    direction = new Vector3(Random.Range(0, 10), Random.value, 0);
     //    rb.AddForce(direction * force);
     //    Debug.Log("direction" + direction);
     //    Debug.Log("direction" + force);
-    //    //float bouncevalue = sphereCollider.material.bounciness;
-    //    //bouncevalue = bouncevalue - 0.5f;
-    //    //Debug.Log(bouncevalue);
     //}
 
 
@@ -65,11 +62,14 @@ public class Ball : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         //direction = new Vector3(Random.value, Random.value, 0);
-        direction = new Vector3(Random.Range(0,10), Random.Range(0, 10), 0);
+        direction = new Vector3(Random.Range(1,50 ), Random.Range(0, 1), 0);
 
         force = (float)Random.Range(-20, 20);
-        rb.AddForce(direction* force);
+        rb.AddForce(direction * force);
         //Debug.Log("direction" + direction);
         //Debug.Log("force" + force);
+        //float bouncevalue = sphereCollider.material.bounciness;
+        //bouncevalue = bouncevalue - 0.5f;
+        //Debug.Log(bouncevalue);
     }
 }

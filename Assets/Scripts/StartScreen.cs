@@ -18,7 +18,7 @@ public class StartScreen : BaseScreen
     
     public  void OnClickStart()
     {
-
+        GameManager.instance.state = GameState.gamePlay;
         ScreenManager.instance.SwitchScreenBack(ScreenType.Start);
         ballsCollection.InstantiateBalls();
         ballLauncher.EnableTheInput();

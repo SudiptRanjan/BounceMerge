@@ -11,7 +11,8 @@ public class BallLauncher : MonoBehaviour
     public int ballCount;
     public BallsCollection ballsCollection;
     public LineRenderer lineRenderer;
-
+    public ExplosionPowerUp explosionPrefab;
+    public int power = 10;
     private void Start()
     {
         lineRenderer = GetComponent<LineRenderer>();
@@ -37,6 +38,13 @@ public class BallLauncher : MonoBehaviour
         BallsCollection.MergingOfBall -= MergeBalls;
         GameOver.OnGameOverClearList -= ClearBallList;
     }
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            explosionPrefab.ShootExplosive(firingPoint, -transform.up);
+        }
+    }
 
     private void CreateLineRenderer()
     {
@@ -58,6 +66,7 @@ public class BallLauncher : MonoBehaviour
 
     private async void  LaunchBalls()
     {
+        Time.timeScale = 0.5f;   
         lineRenderer.enabled = false;
         List<Ball> newBalList = new List<Ball>();
         newBalList.AddRange(BalList);
@@ -73,6 +82,7 @@ public class BallLauncher : MonoBehaviour
         gameObject.GetComponent<PlayerInput>().enabled = false;
 
     }
+
     private void IncreaseBallCount()
     {
         ballCount++;
@@ -106,7 +116,7 @@ public class BallLauncher : MonoBehaviour
 
     private async void MergeBalls()
     {
-        int pointlistCount = ballsCollection.pointList.Count - 1;
+        //int pointlistCount = ballsCollection.pointList.Count - 1;
         bool merged = true;
         while(merged)
         {
@@ -130,15 +140,14 @@ public class BallLauncher : MonoBehaviour
                     MergedBallsList.AddRange(BalList);
                     for (int j = 0; j < MergedBallsList.Count; j++)
                     {
-                        if (ballCount - 1 <=  ballsCollection.pointList.Count - 1)
+                        if (j <=  ballsCollection.pointList.Count - 1)
                         {
                             MergedBallsList[j].transform.position = ballsCollection.pointList[j].transform.position;
                             //Debug.Log(" Merged And move forward");
                         }
                         else
                         {
-                            //Debug.Log("Can't be Merged And move forward");
-                            //MergedBallsList[j].transform.position = ballsCollection.pointList[pointlistCount].transform.position;
+                            Debug.Log("Can't be Merged And move forward");
                         }
                         //MergedBallsList[j].transform.position = ballsCollection.pointList[j].transform.position;
                     }
@@ -154,3 +163,4 @@ public class BallLauncher : MonoBehaviour
     }
 
 }
+//for (int j = 0; j < MergedBallsList.Count; j++)

@@ -21,6 +21,7 @@ public class FastForward : MonoBehaviour
 
     private void OnClickFastForward()
     {
+        GameManager.instance.state = GameState.fastForward;
         Time.timeScale = 10f;
     }
 

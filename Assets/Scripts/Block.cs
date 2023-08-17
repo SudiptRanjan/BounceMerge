@@ -62,6 +62,12 @@ public class Block : MonoBehaviour
         //FindObjectOfType<AudioManager>().Play("BounceSound");
         //AudioManager.inst.PlaySound(AudioManager.SoundName.BounceBall);
         AudioManager.instance.PlaySound(AudioManager.SoundName.BounceBall);
+        ExplosionPowerUp explosionPowerUp = collision.gameObject.GetComponent<ExplosionPowerUp>();
+
+        if (explosionPowerUp != null)
+        {
+            Destroy(this);
+        }
 
         if (ball!= null)
         {
@@ -78,7 +84,6 @@ public class Block : MonoBehaviour
             }
             else
             {
-
                 RemoveBallFromlist(this);
                 Destroy(gameObject);
                 SpawnRandomBalls();
