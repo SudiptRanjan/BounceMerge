@@ -14,9 +14,9 @@ public class BlockSpawner : MonoBehaviour
     private void Start()
     {
         //blockcount = listOfBlocks.Count;
-        SpawnBlocks();
-        SpawnBlocks();
-        SpawnBlocks();
+        //SpawnBlocks();
+        //SpawnBlocks();
+        //SpawnBlocks();
 
 
     }

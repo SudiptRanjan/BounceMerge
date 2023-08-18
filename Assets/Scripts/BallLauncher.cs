@@ -23,7 +23,7 @@ public class BallLauncher : MonoBehaviour
         PlayerInput.OnClick += CreateLineRenderer;
         PlayerInput.OnClick += RotateTheBallLauncher;
         PlayerInput.OnClickUp += LaunchBalls;
-        Block.AddNewBallsToList += IncreaseBallCount;
+         Block.AddNewBallsToList += IncreaseBallCount;
         BallsCollection.MergingOfBall += MergeBalls;
         GameOver.OnGameOverClearList += ClearBallList;
 
@@ -40,10 +40,10 @@ public class BallLauncher : MonoBehaviour
     }
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            explosionPrefab.ShootExplosive(firingPoint, -transform.up);
-        }
+        //if(Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    explosionPrefab.ShootExplosive(firingPoint, -transform.up);
+        //}
     }
 
     private void CreateLineRenderer()

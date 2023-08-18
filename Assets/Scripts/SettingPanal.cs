@@ -4,29 +4,49 @@ using UnityEngine;
 using UnityEngine.UI;
 public class SettingPanal : MonoBehaviour
 {
-    [SerializeField]private Canvas canvas;
-    public Button SettingButton;
-    public  BallLauncher ballLauncher;
-    // Start is called before the first frame update
+    //[SerializeField] private Canvas canvas;
+    public GameObject settingPanal;
+    public bool gameIsPaused = false;
     void Start()
     {
         //Time.timeScale =1;
-        SettingButton.onClick.AddListener(OnClickSetting);
+        //SettingButton.onClick.AddListener(OnClickSetting);
     }
-    
 
-    private void OnClickSetting()
+
+  
+
+    private void Update()
     {
-        canvas.enabled = !canvas.enabled;
-        Time.timeScale = 1;
-        if (Time.timeScale== 1)
+        if(Input.GetKeyDown(KeyCode.Space))
         {
-            Time.timeScale = 0;
+
+            if (gameIsPaused)
+            {
+                Resumed();
+            }
+            else
+            {
+                Paused();
+            }
         }
-        else
-        {
-            Time.timeScale = 1;
-        }
+
+       
+
+    }
+    public void Paused()
+    {
+        settingPanal.SetActive(true);
+        Time.timeScale = 0f;
+        gameIsPaused = true;
+        Debug.Log("paused");
+
     }
 
+    public void Resumed()
+    {
+        settingPanal.SetActive(false);
+        Time.timeScale = 0.7f;
+        gameIsPaused = false;
+    }
 }
