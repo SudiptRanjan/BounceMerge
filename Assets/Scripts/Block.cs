@@ -8,7 +8,6 @@ public class Block : MonoBehaviour
     private TextMeshPro numberText;
     private int hitNumber ;
     public PopupValue popupValue;
-    //private Rigidbody rb;
     public Ball randomBallPrefab;
     //public ScoreUpdate score;
     public List<Color> listColor = new List<Color>();
@@ -24,7 +23,7 @@ public class Block : MonoBehaviour
     private void Start()
     {
 
-        //rb = GetComponent<Rigidbody>();
+       //rb = GetComponent<Rigidbody>();
     }
 
     public void SetBlockNo(int hits)
@@ -59,8 +58,6 @@ public class Block : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         Ball ball = collision.gameObject.GetComponent<Ball>();
-        //FindObjectOfType<AudioManager>().Play("BounceSound");
-        //AudioManager.inst.PlaySound(AudioManager.SoundName.BounceBall);
         AudioManager.instance.PlaySound(AudioManager.SoundName.BounceBall);
         ExplosionPowerUp explosionPowerUp = collision.gameObject.GetComponent<ExplosionPowerUp>();
 
@@ -76,8 +73,6 @@ public class Block : MonoBehaviour
             ScoreUpdate.instance.AddScore(ball.ballNo);
             popupValue.SpawnValue(transform.position, ball.ballNo);
 
-            //ballNoInTextPopup = ball.ballNo;
-            //Debug.Log("block value===" + ballNoInTextPopup);
             if (hitNumber > 0)
             {
                 UpdateTheText();

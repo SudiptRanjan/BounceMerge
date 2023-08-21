@@ -18,18 +18,18 @@ public class SettingPanal : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
+        //if(Input.GetKeyDown(KeyCode.Space))
+        //{
 
-            if (gameIsPaused)
-            {
-                Resumed();
-            }
-            else
-            {
-                Paused();
-            }
-        }
+        //    if (gameIsPaused)
+        //    {
+        //        Resumed();
+        //    }
+        //    else
+        //    {
+        //        Paused();
+        //    }
+        //}
 
        
 
@@ -48,5 +48,6 @@ public class SettingPanal : MonoBehaviour
         settingPanal.SetActive(false);
         Time.timeScale = 0.7f;
         gameIsPaused = false;
+        Debug.Log("Resumed");
     }
 }

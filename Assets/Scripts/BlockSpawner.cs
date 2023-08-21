@@ -53,6 +53,7 @@ public class BlockSpawner : MonoBehaviour
 
     public void SpawnBlocks()
     {
+        //Debug.Log("block spawned");
         foreach (Block block in listOfBlocks)
         {
             if(block != null)

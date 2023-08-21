@@ -66,6 +66,7 @@ public class BallsCollection : MonoBehaviour
         {
             if (ballLauncher.ballCount == ballLauncher.BalList.Count)
             {
+                //Debug.Log("The count did not matched ");
 
                 //ballLauncher.MergeBalls();
                 if (MergingOfBall != null)
@@ -79,6 +80,7 @@ public class BallsCollection : MonoBehaviour
 
                 BlocksSpawn();
             }
+           
         }
     }
 

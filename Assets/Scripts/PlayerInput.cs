@@ -7,29 +7,38 @@ public class PlayerInput : MonoBehaviour
     public delegate void cliclAction();
     public static event cliclAction OnClick;
     public static event cliclAction OnClickUp;
-
-    //public bool shoot ;
+    
 
    
     void Update( )
     {
-        //if (shoot) return;
 
-            if (Input.GetKey(KeyCode.Mouse0))
+        if (Input.GetKey(KeyCode.Mouse0))
             {
-                if (OnClick != null)
-                {
-                    OnClick();
-                }
+            if (OnClick != null)
+            {
+                OnClick();
+
             }
+
+           
+        }
 
         if (Input.GetKeyUp(KeyCode.Mouse0))
         {
-            if (OnClick != null)
-            {
-                OnClickUp();
-            }
+            
+           
+
+                if (OnClick != null)
+                {
+                    OnClickUp();
+
+                }
+          
         }
 
+
     }
-}
+
+    
+    }

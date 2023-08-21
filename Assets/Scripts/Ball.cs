@@ -5,7 +5,7 @@ using TMPro;
 
 public class Ball : MonoBehaviour
 {
-    private float power = 20;
+    private float power = 25;
     private TextMeshPro ballValue;
     public int ballNo ;
     public Rigidbody rb;

@@ -116,7 +116,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 120
+  m_Constraints: 8
   m_CollisionDetection: 2
 --- !u!114 &323036390058751570
 MonoBehaviour:
@@ -146,7 +146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Intensity: 0.2
   Mass: 1
-  stiffness: 1
+  stiffness: 0.6
   damping: 0.3
   Sleep: 0
 --- !u!1 &1870527991253866455

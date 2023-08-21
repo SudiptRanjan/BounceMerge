@@ -20,18 +20,18 @@ public class PopupValue : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
-     void Update()
+    void Update()
     {
 
-        float moveSpeed = 0.05f;
+        float moveSpeed = 0.1f;
         transform.position += Vector3.up * moveSpeed;
-      
+
         {
-            float timerSpeed = 0.5f;
+            float timerSpeed = 0.7f;
             textColor.a -= timerSpeed * Time.deltaTime;
             ballNoPopUp.color = textColor;
             if (textColor.a <= 0)
@@ -41,7 +41,7 @@ public class PopupValue : MonoBehaviour
         }
     }
 
-    public void SpawnValue(Vector3 popPosition,int ballValue)
+    public void SpawnValue(Vector3 popPosition, int ballValue)
     {
         GameObject spawnPop = Instantiate(gameObject, popPosition, Quaternion.identity);
         SetBallNo(ballValue);
@@ -52,6 +52,6 @@ public class PopupValue : MonoBehaviour
         ballNoPopUp.SetText(ballNoInTextPopup.ToString());
         textColor = ballNoPopUp.color;
     }
-   
+
 
 }
