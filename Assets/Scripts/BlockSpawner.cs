@@ -6,10 +6,11 @@ public class BlockSpawner : MonoBehaviour
 {
     [SerializeField] private Block blockPrefab;
     public float distance = 4;
-    private int multiplyer = 1;
     public List<Block> listOfBlocks;
     public List<Color> colors = new List<Color>();
     public BallLauncher ballLauncher;
+    public int multiplyer = 1;
+   
 
     private void Start()
     {
@@ -80,8 +81,7 @@ public class BlockSpawner : MonoBehaviour
         
         
         multiplyer++;
-      
-      
+
     }
 }
 

@@ -50,6 +50,32 @@ public class BallLauncher : MonoBehaviour
       
     }
 
+    public void StoreBall(Ball ball)
+    {
+        BalList.Add(ball);
+
+    }
+
+    public void EnableTheInput()
+    {
+        gameObject.GetComponent<PlayerInput>().enabled = true;
+    }
+
+    public void DisableTheInput()
+    {
+        gameObject.GetComponent<PlayerInput>().enabled = false;
+    }
+    public void ClearBallList()
+    {
+        for (int i = ballCount - 1; i >= 0; i--)
+        {
+            Ball ball = BalList[i];
+            Destroy(ball.gameObject);
+            BalList.RemoveAt(i);
+            ballCount--;
+        }
+
+    }
     private void CreateLineRenderer()
     {
         lineRenderer.enabled = true;
@@ -91,32 +117,7 @@ public class BallLauncher : MonoBehaviour
     {
         ballCount++;
     }
-    public void StoreBall(Ball ball)
-    {
-        BalList.Add(ball);
-
-    }
-
-    public void EnableTheInput()
-    {
-        gameObject.GetComponent<PlayerInput>().enabled = true;
-    }
-
-    public void DisableTheInput()
-    {
-        gameObject.GetComponent<PlayerInput>().enabled = false;
-    }
-    public void ClearBallList()
-    {
-        for (int i = ballCount - 1; i >= 0; i--)
-        {
-            Ball ball = BalList[i];
-            Destroy(ball.gameObject);
-            BalList.RemoveAt(i);
-            ballCount--;
-        }
-
-    }
+   
 
     private async void MergeBalls()
     {
@@ -192,26 +193,7 @@ public class BallLauncher : MonoBehaviour
 
             }
         }
-        //    if (EventSystem.current.IsPointerOverGameObject() || EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
-        //{
-        //    clicked = true;
-        //    if (clicked == true)
-        //    {
-        //        DisableTheInput();
-        //    }
-
-
-        //}
-        //else
-        //{
-        //    clicked = false;
-        //    if (clicked == false)
-        //    {
-        //        EnableTheInput();
-        //    }
-
-
-        //}
+        
     }
 }
 //for (int j = 0; j < MergedBallsList.Count; j++)

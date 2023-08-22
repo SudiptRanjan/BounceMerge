@@ -26,6 +26,17 @@ public class HighScore : MonoBehaviour
         LoadHighScore();
         UpdateHighScoreText();
     }
+    public void UpdateHighScore(int score)
+    {
+        if (score > highScore)
+        {
+            highScore = score;
+            SaveHighScore();
+        }
+
+        UpdateHighScoreText();
+    }
+
 
     private void SaveHighScore()
     {
@@ -41,7 +52,7 @@ public class HighScore : MonoBehaviour
         string path = Application.persistentDataPath + highScoreFilePath;
 
         //print(path);
-        Debug.Log(path + " Path of saved file");
+        //Debug.Log(path + " Path of saved file");
         if (File.Exists(path))
         {
             string json = File.ReadAllText(path);
@@ -50,17 +61,7 @@ public class HighScore : MonoBehaviour
         }
     }
 
-    public void UpdateHighScore(int score)
-    {
-        if (score > highScore)
-        {
-            highScore = score;
-            SaveHighScore();
-        }
-
-        UpdateHighScoreText();
-    }
-
+    
     private void UpdateHighScoreText()
     {
         highScoreTextForGameOver.text = "High Score: " + highScore.ToString();

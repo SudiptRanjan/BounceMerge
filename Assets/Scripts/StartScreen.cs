@@ -9,6 +9,7 @@ public class StartScreen : BaseScreen
     public Button Startbutton;
     public BallsCollection ballsCollection;
     public BallLauncher ballLauncher;
+    public BlockSpawner blockSpawner;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +23,7 @@ public class StartScreen : BaseScreen
         ballsCollection.InstantiateBalls();
         ballLauncher.EnableTheInput();
         ballLauncher.clickedOn = true;
+        blockSpawner.SpawnBlocks();
         //Debug.Log("start");
     }
 }

@@ -20,18 +20,18 @@ public class PopupValue : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        //StartCoroutine(HitPopUp());
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        float moveSpeed = 0.1f;
+        float moveSpeed = 0.54f;
         transform.position += Vector3.up * moveSpeed;
 
         {
-            float timerSpeed = 0.7f;
+            float timerSpeed = 3.5f;
             textColor.a -= timerSpeed * Time.deltaTime;
             ballNoPopUp.color = textColor;
             if (textColor.a <= 0)
@@ -53,5 +53,27 @@ public class PopupValue : MonoBehaviour
         textColor = ballNoPopUp.color;
     }
 
+    //IEnumerator HitPopUp()
+    //{
+    //    float timerSpeed = 3.5f;
+
+    //    ballNoPopUp.color = textColor;
+    //    textColor.a -= timerSpeed * Time.deltaTime;
+
+    //    Debug.Log(textColor.a);
+
+
+    //    //while (textColor.a <= 0)
+    //    //{
+    //    Debug.Log("Pop up");
+    //    float moveSpeed = 0.54f;
+    //    transform.position += Vector3.up * moveSpeed;
+    //    ballNoPopUp.color = textColor;
+
+    //    //}
+    //    Destroy(gameObject);
+    //    yield return null;
+        
+    //}
 
 }

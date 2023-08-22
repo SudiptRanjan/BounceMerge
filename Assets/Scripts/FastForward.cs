@@ -26,7 +26,7 @@ public class FastForward : MonoBehaviour
     private void OnClickFastForward()
     {
         
-        Time.timeScale = 3f;
+        Time.timeScale = 2f;
         Debug.Log("fast forwarded");
     }
 

@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class ExplosionPowerUp : MonoBehaviour
 {
-    private float power = 20;
     public Rigidbody rb;
+
+    private float power = 20;
     // Start is called before the first frame update
     void Start()
     {

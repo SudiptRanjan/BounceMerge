@@ -5,10 +5,11 @@ using TMPro;
 
 public class Ball : MonoBehaviour
 {
-    private float power = 25;
-    private TextMeshPro ballValue;
-    public int ballNo ;
+    public int ballNo;
     public Rigidbody rb;
+
+    private float power = 50;
+    private TextMeshPro ballValue;
     private Vector3 direction;
     private float force;
     private SphereCollider sphereCollider;
@@ -38,6 +39,19 @@ public class Ball : MonoBehaviour
     //    Debug.Log("direction" + force);
     //}
 
+    public void Shoot(Transform firePoint, Vector3 dir)
+    {
+        transform.position = firePoint.transform.position;
+        rb.velocity = dir * power;
+        rb.isKinematic = false;
+        rb.useGravity = true;
+    }
+
+    public void MakeBodystatic()
+    {
+        rb.useGravity = false;
+        rb.isKinematic = true;
+    }
 
     private void SetTheNumber(int number)
     {
@@ -45,24 +59,12 @@ public class Ball : MonoBehaviour
         ballValue.text = number.ToString();
     }
 
-    public void Shoot(Transform firePoint,Vector3 dir)
-    {
-        transform.position = firePoint.transform.position;
-        rb.velocity = dir * power;
-        rb.isKinematic = false;
-        rb.useGravity = true;
-    }
   
-    public void MakeBodystatic()
-    {
-        rb.useGravity = false;
-        rb.isKinematic = true;
-    }
 
     private void OnCollisionEnter(Collision collision)
     {
         //direction = new Vector3(Random.value, Random.value, 0);
-        direction = new Vector3(Random.Range(1,50 ), Random.Range(0, 1), 0);
+        direction = new Vector3(Random.Range(1,50 ), Random.Range(0, 50), 0);
 
         force = (float)Random.Range(-20, 20);
         rb.AddForce(direction * force);

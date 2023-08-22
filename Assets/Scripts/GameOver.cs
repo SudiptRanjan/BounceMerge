@@ -8,6 +8,7 @@ public class GameOver : MonoBehaviour
     public delegate void ClearAll();
     public static event ClearAll OnGameOverClearList;
     public BallLauncher ballLauncher;
+    public BlockSpawner blockSpawner;
     public void EnableCamrOver()
     {
         //gameOverCanvas.enabled = true;
@@ -25,7 +26,7 @@ public class GameOver : MonoBehaviour
             //SpawnBlocks()
             ScoreUpdate.instance.ScoreWhenGameOver();
             ballLauncher.DisableTheInput();
-           
+            blockSpawner.multiplyer = 0;
         }
     }
 }
