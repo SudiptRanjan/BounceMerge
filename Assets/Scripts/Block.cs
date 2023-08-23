@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using TMPro;
 
@@ -15,6 +16,7 @@ public class Block : MonoBehaviour
     public static event RemoveBall RemoveBallFromlist;
     public  delegate void AddNewBalls();
     public static event AddNewBalls AddNewBallsToList;
+    private Vector3 origSize, bounceSize;
     private void Awake()
     {
         numberText = GetComponentInChildren<TextMeshPro>();
@@ -22,8 +24,9 @@ public class Block : MonoBehaviour
 
     private void Start()
     {
-
-       //rb = GetComponent<Rigidbody>();
+        origSize = new Vector3(2f, 2f, 7.06149f);
+        bounceSize = new Vector3(2.5f, 1.8f, 7.06149f);
+        //rb = GetComponent<Rigidbody>();
     }
 
     public void SetBlockNo(int hits)
@@ -44,6 +47,7 @@ public class Block : MonoBehaviour
 
     void SpawnRandomBalls()
     {
+       
         if (Random.Range(1, 100) > 20)
         {
             Ball initialBall = Instantiate(randomBallPrefab, transform.position, Quaternion.identity);
@@ -53,14 +57,21 @@ public class Block : MonoBehaviour
         }
     }
 
-   
+    private void OnScale()
+    {
+        var tween = transform.DOScale(bounceSize, 0.09f).OnComplete(() => { transform.DOScale(origSize, 0.09f); });
+        if (tween.IsPlaying()) return;
+
+    }
+
+
 
     private void OnCollisionEnter(Collision collision)
     {
         Ball ball = collision.gameObject.GetComponent<Ball>();
         AudioManager.instance.PlaySound(AudioManager.SoundName.BounceBall);
         ExplosionPowerUp explosionPowerUp = collision.gameObject.GetComponent<ExplosionPowerUp>();
-
+        OnScale();
         if (explosionPowerUp != null)
         {
             Destroy(this);

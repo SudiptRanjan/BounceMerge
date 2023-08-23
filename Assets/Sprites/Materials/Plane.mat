@@ -82,7 +82,7 @@ Material:
     - _WaveSpeed: -5
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 0.2}
+    - _Color: {r: 0.8584906, g: 0.8584906, b: 0.8584906, a: 0.2}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _ImpactOrigin: {r: -5, g: 0, b: 0, a: 0}
     - _ModelOrigin: {r: 0, g: 0, b: 0, a: 0}

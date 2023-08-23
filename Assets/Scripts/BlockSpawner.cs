@@ -54,6 +54,8 @@ public class BlockSpawner : MonoBehaviour
 
     public void SpawnBlocks()
     {
+        Vector3 xyz = new Vector3(0, 0, 45);
+        Quaternion newRotation = Quaternion.Euler(xyz);
         //Debug.Log("block spawned");
         foreach (Block block in listOfBlocks)
         {
@@ -71,7 +73,7 @@ public class BlockSpawner : MonoBehaviour
             {
                    Vector3 position = transform.position;
                    position += -distance * i * Vector3.right;
-                   Block createdBlocks = Instantiate(blockPrefab, position, Quaternion.identity);
+                   Block createdBlocks = Instantiate(blockPrefab, position, newRotation);
                    createdBlocks.GetComponent<MeshRenderer>().material.color = colors[Random.Range(0, colors.Count)];
                    int blockValue = Random.Range(4, 8 * multiplyer*multiplyer);
                    createdBlocks.SetBlockNo(blockValue);

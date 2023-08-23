@@ -12,7 +12,6 @@ public class BallsCollection : MonoBehaviour
     public List<Color> coloredBalls = new List<Color>();
     public delegate void SpawningOfBlocks();
     public static event SpawningOfBlocks BlocksSpawn;
-
     public delegate void MergingOfBalls();
     public static event MergingOfBalls MergingOfBall ;
 
@@ -26,6 +25,8 @@ public class BallsCollection : MonoBehaviour
         //    ballLauncher.StoreBall(initialBall);
         //    initialBall.transform.position = pointList[i].transform.position;
         //}
+      
+        
     }
 
     public void InstantiateBalls()
@@ -40,6 +41,9 @@ public class BallsCollection : MonoBehaviour
         }
     }
 
+  
+
+
     private void OnCollisionEnter(Collision collision)
     {
 
@@ -48,9 +52,8 @@ public class BallsCollection : MonoBehaviour
         ballLauncher.StoreBall(ball);
         int index = ballLauncher.BalList.Count - 1;
         int indexOfPoints = pointList.Count -1;
-
         //Debug.Log(indexOfPoints);
-        if(index <= indexOfPoints)
+        if (index <= indexOfPoints)
         {
             ball.transform.position = pointList[index].transform.position;
 
@@ -66,7 +69,7 @@ public class BallsCollection : MonoBehaviour
         {
             if (ballLauncher.ballCount == ballLauncher.BalList.Count)
             {
-                //Debug.Log("The count did not matched ");
+                Debug.Log("The count  matched ");
 
                 //ballLauncher.MergeBalls();
                 if (MergingOfBall != null)
