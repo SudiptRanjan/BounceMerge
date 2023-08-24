@@ -10,6 +10,7 @@ public class BallLauncher : MonoBehaviour
     public Transform firingPoint;
     public Transform endLine;
     public int ballCount;
+    public static BallLauncher instance;
     public BallsCollection ballsCollection;
     public LineRenderer lineRenderer;
     public bool clicked;
@@ -17,6 +18,7 @@ public class BallLauncher : MonoBehaviour
 
     private void Start()
     {
+        instance = this;
         lineRenderer = GetComponent<LineRenderer>();
         DisableTheInput();
     }

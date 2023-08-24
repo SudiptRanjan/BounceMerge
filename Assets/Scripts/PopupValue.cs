@@ -20,25 +20,25 @@ public class PopupValue : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //StartCoroutine(HitPopUp());
+        StartCoroutine(HitPopUp());
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        float moveSpeed = 0.54f;
-        transform.position += Vector3.up * moveSpeed;
+        //float moveSpeed = 0.54f;
+        //transform.position += Vector3.up * moveSpeed;
 
-        {
-            float timerSpeed = 3.5f;
-            textColor.a -= timerSpeed * Time.deltaTime;
-            ballNoPopUp.color = textColor;
-            if (textColor.a <= 0)
-            {
-                Destroy(gameObject);
-            }
-        }
+        //{
+        //    float timerSpeed = 3.5f;
+        //    textColor.a -= timerSpeed * Time.deltaTime;
+        //    ballNoPopUp.color = textColor;
+        //    if (textColor.a <= 0)
+        //    {
+        //        Destroy(gameObject);
+        //    }
+        //}
     }
 
     public void SpawnValue(Vector3 popPosition, int ballValue)
@@ -53,27 +53,23 @@ public class PopupValue : MonoBehaviour
         textColor = ballNoPopUp.color;
     }
 
-    //IEnumerator HitPopUp()
-    //{
-    //    float timerSpeed = 3.5f;
+    IEnumerator HitPopUp()
+    {
+        float moveSpeed = 0.54f;
+        float timerSpeed = 3.5f;
 
-    //    ballNoPopUp.color = textColor;
-    //    textColor.a -= timerSpeed * Time.deltaTime;
+        while (textColor.a > 0)
+        {
+            transform.position += Vector3.up * moveSpeed;
 
-    //    Debug.Log(textColor.a);
+            textColor.a -= timerSpeed * Time.deltaTime;
+            ballNoPopUp.color = textColor;
 
+            yield return null;
+        }
 
-    //    //while (textColor.a <= 0)
-    //    //{
-    //    Debug.Log("Pop up");
-    //    float moveSpeed = 0.54f;
-    //    transform.position += Vector3.up * moveSpeed;
-    //    ballNoPopUp.color = textColor;
+        Destroy(gameObject);
 
-    //    //}
-    //    Destroy(gameObject);
-    //    yield return null;
-        
-    //}
+    }
 
 }

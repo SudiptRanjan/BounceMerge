@@ -74,3 +74,58 @@ public enum SoundName
 {
     CubeCollision, ButtonClick, GameOver, CubePopup
 }
+
+
+
+//using System.Collections;
+//using System.Collections.Generic;
+//using UnityEngine;
+//using TMPro;
+
+//public class PopupValue : MonoBehaviour
+//{
+//    public TextMeshPro ballNoPopUp;
+//    private int ballNoInTextPopup;
+//    public Color textColor;
+
+//    private void Awake()
+//    {
+//        ballNoPopUp = GetComponentInChildren<TextMeshPro>();
+//    }
+
+//    void Start()
+//    {
+//        StartCoroutine(PopupCoroutine());
+//    }
+
+//    IEnumerator PopupCoroutine()
+//    {
+//        float moveSpeed = 0.54f;
+//        float timerSpeed = 3.5f;
+
+//        while (textColor.a > 0)
+//        {
+//            transform.position += Vector3.up  moveSpeed Time.deltaTime;
+
+//            textColor.a -= timerSpeed * Time.deltaTime;
+//            ballNoPopUp.color = textColor;
+
+//            yield return null;
+//        }
+
+//        Destroy(gameObject);
+//    }
+
+//    public void SpawnValue(Vector3 popPosition, int ballValue)
+//    {
+//        GameObject spawnPop = Instantiate(gameObject, popPosition, Quaternion.identity);
+//        SetBallNo(ballValue);
+//    }
+
+//    public void SetBallNo(int ballNoInText)
+//    {
+//        ballNoInTextPopup = ballNoInText;
+//        ballNoPopUp.SetText(ballNoInTextPopup.ToString());
+//        textColor = ballNoPopUp.color;
+//    }
+//}

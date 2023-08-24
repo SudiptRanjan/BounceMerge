@@ -10,16 +10,15 @@ public class BlockSpawner : MonoBehaviour
     public List<Color> colors = new List<Color>();
     public BallLauncher ballLauncher;
     public int multiplyer = 1;
-   
-
+    public  int blockValue;
+     int   minValue =100;
+    public Ball ball;
     private void Start()
     {
         //blockcount = listOfBlocks.Count;
         //SpawnBlocks();
         //SpawnBlocks();
         //SpawnBlocks();
-
-
     }
     private void OnEnable()
     {
@@ -35,6 +34,19 @@ public class BlockSpawner : MonoBehaviour
         GameOver.OnGameOverClearList -= ClearAllBlocks;
     }
 
+    private void Update()
+    {
+        //for (int i = 0; i < listOfBlocks.Count; i++)
+        //{
+        //    if (blockValue > minValue)
+        //    {
+        //        ball.IncreaseBallNo();
+        //        minValue += 100;
+        //        //Debug.Log("the value blockValue =" + blockValue);
+        //    }
+        //    return;
+        //}
+    }
     public void RemoveBalls(Block block)
     {
         listOfBlocks.Remove(block);
@@ -52,8 +64,11 @@ public class BlockSpawner : MonoBehaviour
         }
     }
 
+   
+
     public void SpawnBlocks()
     {
+        //Debug.Log("spawn block calling");
         Vector3 xyz = new Vector3(0, 0, 45);
         Quaternion newRotation = Quaternion.Euler(xyz);
         //Debug.Log("block spawned");
@@ -75,14 +90,37 @@ public class BlockSpawner : MonoBehaviour
                    position += -distance * i * Vector3.right;
                    Block createdBlocks = Instantiate(blockPrefab, position, newRotation);
                    createdBlocks.GetComponent<MeshRenderer>().material.color = colors[Random.Range(0, colors.Count)];
-                   int blockValue = Random.Range(4, 8 * multiplyer*multiplyer);
+                    blockValue = Random.Range(4, 8 * multiplyer*multiplyer);
                    createdBlocks.SetBlockNo(blockValue);
                    listOfBlocks.Add(createdBlocks);
+                //Debug.Log(blockValue);
+                //for (int j = 0; j < listOfBlocks.Count; j++)
+                //{
+                //    if (blockValue > minValue)
+                //    {
+                //        ball.IncreaseBallNo();
+                //        minValue = 300;
+                //        //Debug.Log("the value blockValue =" + blockValue);
+                //    }
+                    
+                //}
             }
         }
-        
-        
         multiplyer++;
+
+        //Debug.Log(blockValue);
+        //for (int i = 0; i < listOfBlocks.Count; i++)
+        //{
+        //    if (blockValue > minValue)
+        //    {
+        //        ball.IncreaseBallNo();
+        //        minValue += 100;
+        //        //Debug.Log("the value blockValue =" + blockValue);
+        //    }
+        //    return;
+        //}
+
+
 
     }
 }

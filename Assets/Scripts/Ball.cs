@@ -8,16 +8,18 @@ public class Ball : MonoBehaviour
 {
     public int ballNo;
     public Rigidbody rb;
-
+    
     private float power = 50;
     private TextMeshPro ballValue;
     private Vector3 direction;
     private float force;
-    private SphereCollider sphereCollider;
+    //private SphereCollider sphereCollider;
     int randomNumber;
     private Vector3 origSize, bounceSize;
-    int multiple,initial,final;
-
+    //int increasedValue =1;
+    int initial;
+    int final;
+    //bool isDone ;
     void Start()
     {
         initial = 1;
@@ -25,12 +27,13 @@ public class Ball : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         //direction = new Vector3(Random.value, Random.value, 0);
         ballValue = GetComponentInChildren<TextMeshPro>();
-        randomNumber = (int)Mathf.Pow(2, Random.Range(initial * multiple, final * multiple));
+        randomNumber = (int)Mathf.Pow(2, Random.Range(1 , 5 ));
         SetTheNumber(randomNumber);
-        sphereCollider = GetComponent<SphereCollider>();
+        //sphereCollider = GetComponent<SphereCollider>();
         origSize = new Vector3(2, 2, 2);
         bounceSize = new Vector3(1.4f, 0.7f, 2);
-        multiple++;
+      
+        //StartCoroutine(IncreaseBallNo());
     }
 
     public void UpdateText()
@@ -38,14 +41,23 @@ public class Ball : MonoBehaviour
         ballValue.SetText(ballNo.ToString());
 
     }
-    //void FixedUpdate()
-    //{
-    //    force = (float)Random.Range(-10, 10);
-    //    direction = new Vector3(Random.Range(0, 10), Random.value, 0);
-    //    rb.AddForce(direction * force);
-    //    Debug.Log("direction" + direction);
-    //    Debug.Log("direction" + force);
-    //}
+
+
+    public void IncreaseBallNo()
+    {
+        {
+            initial++;
+            final++;
+            //increasedValue++;
+            //Mathf.Clamp(final, 5, 9);
+            //Debug.Log("Initial Value ==" + initial);
+            //Debug.Log("Final Value ==" + final);
+
+        }
+
+
+    }
+
 
     public void Shoot(Transform firePoint, Vector3 dir)
     {
@@ -61,7 +73,7 @@ public class Ball : MonoBehaviour
         rb.isKinematic = true;
     }
 
-    private void SetTheNumber(int number)
+    public void SetTheNumber(int number)
     {
         ballNo = number;
         ballValue.text = number.ToString();
@@ -71,9 +83,11 @@ public class Ball : MonoBehaviour
     {
        var tween = transform.DOScale(bounceSize, 0.09f).OnComplete(() => { transform.DOScale(origSize, 0.09f); });
         if (tween.IsPlaying()) return;
+        transform.DOKill();
         Debug.Log("compressed");
     }
 
+  
 
 
     private void OnCollisionEnter(Collision collision)

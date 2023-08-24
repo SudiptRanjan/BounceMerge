@@ -14,7 +14,7 @@ public class BallsCollection : MonoBehaviour
     public static event SpawningOfBlocks BlocksSpawn;
     public delegate void MergingOfBalls();
     public static event MergingOfBalls MergingOfBall ;
-
+    public BlockSpawner blockSpawner;
     private void Start()
     {
         //for (int i = 0; i < numberOfBalls; i++)
@@ -64,12 +64,12 @@ public class BallsCollection : MonoBehaviour
             //Debug.Log("stored in the last position");
         }
         //ball.transform.position = pointList[index].transform.position;
-
+      
+        
         if (BlocksSpawn != null)
         {
             if (ballLauncher.ballCount == ballLauncher.BalList.Count)
             {
-                Debug.Log("The count  matched ");
 
                 //ballLauncher.MergeBalls();
                 if (MergingOfBall != null)
@@ -80,10 +80,11 @@ public class BallsCollection : MonoBehaviour
 
                 }
 
-
+               
                 BlocksSpawn();
+                //blockSpawner.ToFindLargestBlock();
             }
-           
+
         }
     }
 
